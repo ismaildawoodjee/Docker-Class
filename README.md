@@ -10,4 +10,7 @@ To understand what containers are, one must first understand what virtual machin
 
 Containers take it one step further. They virtualize the underlying operating system as well, leaving only the applications on top. This makes them very lightweight compared to virtual machines, where an entire operating system (such as Windows or macOS) has to be installed in order for us to use them. Docker uses Linux as its operating system kernel (a kernel is the operating system's core, which directly interacts with and runs on top of the hardware), and most containers use the lightweight Alpine flavour of Linux because of its size. Compared to virtual machines, which has sizes on the order of several gigabytes, container sizes are only on the order of megabytes.
 
-## 
+## Creating a Dockerfile
+
+(what's a dockerfile)
+(specify what stuff)
