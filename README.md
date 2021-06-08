@@ -10,6 +10,76 @@ To understand what containers are, one must first understand what virtual machin
 
 Containers take it one step further. They virtualize the underlying operating system as well, leaving only the applications on top. This makes them very lightweight compared to virtual machines, where an entire operating system (such as Windows or macOS) has to be installed in order for us to use them. Docker uses Linux as its operating system kernel (a kernel is the operating system's core, which directly interacts with and runs on top of the hardware), and most containers use the lightweight Alpine flavour of Linux because of its size. Compared to virtual machines, which has sizes on the order of several gigabytes, container sizes are only on the order of megabytes.
 
+## Common Docker Commands
+
+Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.com/docker/cheatsheet/) and [PhoenixNap](https://phoenixnap.com/kb/list-of-docker-commands-cheat-sheet)
+
+![Docker cheat sheet](https://phoenixnap.com/kb/wp-content/uploads/2021/04/docker-commands-cheatsheet-webpage.jpg "Docker cheat sheet")
+
+0. Help for Docker
+
+    docker --help
+
+1. See running Docker containers
+
+    docker ps
+
+2. See all Docker containers (including the exited ones)
+
+    docker ps -a
+
+3. See Docker images
+
+    docker images
+    docker image ls
+
+4. Check the logs of a container
+
+    docker logs container_name
+    [e.g.] docker logs flask-container
+
+5. Remove containers with 
+
+    docker rm container_name
+    [e.g.] docker rm flask-container
+
+6. Remove images with 
+
+    docker rmi image_name
+    [e.g.] docker rmi flask-app
+
+7. Build Docker image using
+
+    docker build -t give_image_name .
+    [e.g.] docker build -t flask-app .
+
+8. Run Docker container
+
+    docker run --name container_name -p port_no:port_no image_name
+    [e.g.] docker run --name flask-container -p 5000:5000 flask-app 
+
+    [or just] docker run image_name:tag
+    docker run postgres:latest
+
+9. Login to Docker hub
+
+    docker login
+
+10. Tag an existing repo on local machine with repo created on DockerHub
+
+    docker tag image_name user_name/dockerhub_image_name:tag
+    [e.g.] docker tag flask-app ismaildawoodjee/flask-app-repo:hubtest
+
+11. Push the local repo to DockerHub
+
+    docker push user_name/dockerhub_image_name:tag
+    [e.g.] docker push ismaildawoodjee/flask-app-repo:hubtest
+
+12. Pull an image from DockerHub
+
+    docker pull image_name
+    [e.g.] docker pull postgres
+
 ## Creating a Dockerfile
 
 (what's a dockerfile)
