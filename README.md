@@ -48,9 +48,9 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
         docker rmi image_name
         [e.g.] docker rmi flask-app
 
-7. Build Docker image using
+7. Build Docker image using the following (can optionally specify version of image)
 
-        docker build -t give_image_name .
+        docker build -t give_image_name[:version_number] .
         [e.g.] docker build -t flask-app .
 
 8. Run Docker container
@@ -86,5 +86,8 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
         docker exec -it container_name bash
         [e.g.] docker exec -it nginx-automation bash
 
-## 
+## Nginx Automation
+
+Nginx, among its many uses, can be used as a server for hosting web content. Here, an Nginx Docker image can be built and the container can be used to host a simple HTML file (`index.html`).
+
 
