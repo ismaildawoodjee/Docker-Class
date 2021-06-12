@@ -90,4 +90,7 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
 
 Nginx, among its many uses, can be used as a server for hosting web content. Here, an Nginx Docker image can be built and the container can be used to host a simple HTML file (`index.html`).
 
+By connecting the DockerHub repo with the GitHub repo, any changes made to the HTML file will result in an automated build after pushing changes to the GitHub repo, i.e. after running `git push`.
+
+
 
