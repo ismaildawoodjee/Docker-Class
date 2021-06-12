@@ -18,69 +18,73 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
 
 0. Help for Docker
 
-    docker --help
+        docker --help
 
 1. See running Docker containers
 
-    docker ps
+        docker ps
 
 2. See all Docker containers (including the exited ones)
 
-    docker ps -a
+        docker ps -a
 
 3. See Docker images
 
-    docker images
-    docker image ls
+        docker images
+        docker image ls
 
 4. Check the logs of a container
 
-    docker logs container_name
-    [e.g.] docker logs flask-container
+        docker logs container_name
+        [e.g.] docker logs flask-container
 
 5. Remove containers with 
 
-    docker rm container_name
-    [e.g.] docker rm flask-container
+        docker rm container_name
+        [e.g.] docker rm flask-container
 
 6. Remove images with 
 
-    docker rmi image_name
-    [e.g.] docker rmi flask-app
+        docker rmi image_name
+        [e.g.] docker rmi flask-app
 
 7. Build Docker image using
 
-    docker build -t give_image_name .
-    [e.g.] docker build -t flask-app .
+        docker build -t give_image_name .
+        [e.g.] docker build -t flask-app .
 
 8. Run Docker container
 
-    docker run --name container_name -p port_no:port_no image_name
-    [e.g.] docker run --name flask-container -p 5000:5000 flask-app 
+        docker run --name container_name -p port_no:port_no image_name
+        [e.g.] docker run --name flask-container -p 5000:5000 flask-app 
 
-    [or just] docker run image_name:tag
-    docker run postgres:latest
+        [or just] docker run image_name:tag
+        docker run postgres:latest
 
 9. Login to Docker hub
 
-    docker login
+        docker login
 
-10. Tag an existing repo on local machine with repo created on DockerHub
+10. Tag an existing repo on local machine with the repo created on DockerHub
 
-    docker tag image_name user_name/dockerhub_image_name:tag
-    [e.g.] docker tag flask-app ismaildawoodjee/flask-app-repo:hubtest
+        docker tag image_name user_name/dockerhub_image_name:tag
+        [e.g.] docker tag flask-app ismaildawoodjee/flask-app-repo:hubtest
 
 11. Push the local repo to DockerHub
 
-    docker push user_name/dockerhub_image_name:tag
-    [e.g.] docker push ismaildawoodjee/flask-app-repo:hubtest
+        docker push user_name/dockerhub_image_name:tag
+        [e.g.] docker push ismaildawoodjee/flask-app-repo:hubtest
 
 12. Pull an image from DockerHub
 
-    docker pull image_name
-    [e.g.] docker pull postgres
+        docker pull image_name
+        [e.g.] docker pull postgres
 
-## Creating a Dockerfile
+13. Run a Docker container interactively `-it` (which means I can access a Bash shell inside the container) and access this shell using `exec -it`
 
-(what's a dockerfile)
-(specify what stuff)
+        docker run -it image_name
+        docker exec -it container_name bash
+        [e.g.] docker exec -it nginx-automation bash
+
+## 
+
