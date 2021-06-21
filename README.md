@@ -2,13 +2,31 @@
 
 ## Introduction
 
-Containers are a convenient way of packaging all the applications that you need and deploy it anywhere you want, and Docker is a software that allows you to do this. To put it simply, Docker solves the problem of "It works on my computer, why doesn't it work on yours?". 
+Containers are a convenient way of packaging all the applications that you need
+and deploy it anywhere you want, and Docker is a software that allows you to do
+this. To put it simply, Docker solves the problem of "It works on my computer, 
+why doesn't it work on yours?". 
 
-To understand what containers are, one must first understand what virtual machines are. The way I understand virtual machines is the following. Imagine your laptop, where you are typing away and interacting with what's shown on the screen. Now imagine it, except without the keyboard, glass screen, plastic covering, battery, motherboard, CPUs and all the internal hardware inside it. All of the hardware has been abstracted away, with only the operating system and running applications remaining, which makes your laptop a virtual machine. In this way virtual machines "virtualize" the underlying hardware.
+To understand what containers are, one must first understand what virtual 
+machines are. The way I understand virtual machines is the following. Imagine 
+your laptop, where you are typing away and interacting with what's shown on the
+screen. Now imagine it, except without the keyboard, glass screen, plastic 
+covering, battery, motherboard, CPUs and all the internal hardware inside it. 
+All of the hardware has been abstracted away, with only the operating system 
+and running applications remaining, which makes your laptop a virtual machine. 
+In this way virtual machines "virtualize" the underlying hardware.
 
 ![Virtual Machines and Containers Comparison](images/vms_vs_containers.jpg "Comparison between VMs and Containers (from SDxCentral)")
 
-Containers take it one step further. They virtualize the underlying operating system as well, leaving only the applications on top. This makes them very lightweight compared to virtual machines, where an entire operating system (such as Windows or macOS) has to be installed in order for us to use them. Docker uses Linux as its operating system kernel (a kernel is the operating system's core, which directly interacts with and runs on top of the hardware), and most containers use the lightweight Alpine flavour of Linux because of its size. Compared to virtual machines, which has sizes on the order of several gigabytes, container sizes are only on the order of megabytes.
+Containers take it one step further. They virtualize the underlying operating 
+system as well, leaving only the applications on top. This makes them very 
+lightweight compared to virtual machines, where an entire operating system 
+(such as Windows or macOS) has to be installed in order for us to use them. 
+Docker uses Linux as its operating system kernel (a kernel is the operating 
+system's core, which directly interacts with and runs on top of the hardware), 
+and most containers use the lightweight Alpine flavour of Linux because of its 
+size. Compared to virtual machines, which has sizes on the order of several 
+gigabytes, container sizes are only on the order of megabytes.
 
 ## Common Docker Commands
 
@@ -16,9 +34,10 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
 
 ![Docker cheat sheet](https://phoenixnap.com/kb/wp-content/uploads/2021/04/docker-commands-cheatsheet-webpage.jpg "Docker cheat sheet")
 
-0. Help for Docker
+0. Help for Docker, and check if Docker is running
 
         docker --help
+        docker info
 
 1. See running Docker containers
 
@@ -48,7 +67,8 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
         docker rmi image_name
         [e.g.] docker rmi flask-app
 
-7. Build Docker image using the following (can optionally specify version of image)
+7. Build Docker image using the following (can optionally specify version of 
+image)
 
         docker build -t give_image_name[:version_number] .
         [e.g.] docker build -t flask-app .
@@ -80,17 +100,44 @@ Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.co
         docker pull image_name
         [e.g.] docker pull postgres
 
-13. Run a Docker container interactively `-it` (which means I can access a Bash shell inside the container) and access this shell using `exec -it`
+13. Run a Docker container interactively `-i` (which means I can access a Bash
+shell inside the container) and access this shell using `exec -i. Running a
+container with flag `-d` means the container will keep running in the background
+(detached mode).
 
-        docker run -it image_name
-        docker exec -it container_name bash
-        [e.g.] docker exec -it nginx-automation bash
+        docker run --name [CONTAINER_NAME] -td [IMAGE_NAME] [COMMAND]
+        [e.g.] docker run --name spider -td scrapy-spider:1.0 bash
+        docker exec -it [CONTAINER_NAME] bash
+        [e.g.] docker exec -it spider bash
 
-## Nginx Automation
+14. Start/stop/restart or see status of Docker service
 
-Nginx, among its many uses, can be used as a server for hosting web content. Here, an Nginx Docker image can be built and the container can be used to host a simple HTML file (`index.html`).
+        service docker {start|stop|restart|status}
 
-By connecting the DockerHub repo with the GitHub repo, any changes made to the HTML file will result in an automated build after pushing changes to the GitHub repo, i.e. after running `git push`.
+15. Copy files/folder from container to local working directory
+
+        docker cp [CONTAINER]:[/path/inside/container] .
+
+16. Mount a volume from a local directory to the container (running the
+container in the process)
+
+        docker run -v /absolute/path/to/local/directory:/app/data [IMAGE_NAME]
+
+## Nginx (Automating Builds)
+
+Nginx, among its many uses, can be used as a server for hosting web content. 
+Here, an Nginx Docker image can be built and the container can be used to host 
+a simple HTML file (`index.html`). By connecting the DockerHub repo with the 
+GitHub repo, any changes made to the HTML file will result in an automated 
+build after pushing changes to the GitHub repo, i.e. after running `git push`.
+
+## Scrapy Spider (Mounting Volumes / Copying Files)
+
+The Scrapy spider crawls the two websites specified in the `dockerspider.py`
+file and outputs their HTML pages. These pages can be transferred to the local
+file by mounting a volume to the container, or more easily by using the
+`docker cp` command to copy files.
+
 
 
 
