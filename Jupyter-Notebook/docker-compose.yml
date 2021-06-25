@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+    datascience-notebook:
+        image: jupyter/tensorflow-notebook
+        volumes: 
+            - /home/xavier/Documents/Docker-Masterclass/Jupyter-Notebook
+        ports:
+            - 8888:8888
+        container_name: compose-notebook
+
+# a notebook that comes preinstalled with tensorflow + data science libraries

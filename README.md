@@ -138,6 +138,38 @@ file and outputs their HTML pages. These pages can be transferred to the local
 file by mounting a volume to the container, or more easily by using the
 `docker cp` command to copy files.
 
+## Docker Compose
+
+"Docker Compose is a tool for defining and running multi-container Docker
+applications." It is written in a `yaml` or `yml` file, and can be run using
+the `docker-compose up` command. Useful for a project where many containers
+or services are needed for an application to run. For example a web application
+requiring backend database, messaging, and frontend services. No need to
+install all the individual components on your own system. 
+
+After you finish working, tear down the containers using `docker-compose down`.
+
+### Jupyter Notebook Container Environment
+
+Running the `docker-compose.yml` file for building the Jupyter Notebook image
+will produce the required `ipv4:port/?token=some_token` (in my case, it is 
+`http://0.0.0.0:8888/?token=some_token`) to open the notebook in my browser. 
+If for some reason, I lost this address, I can find it back by running the 
+container shell 
+
+        `docker exec -it compose-notebook bash`
+        
+and type in 
+
+        jupyter notebook list
+
+to recover the lost address. Jupyter notebooks in this container environment
+are kept in the `~/work` directory of the container and will appear there.
+
+### Nginx, Flask, MySQL App
+
+
+
 
 
 
