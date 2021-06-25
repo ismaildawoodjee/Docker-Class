@@ -168,7 +168,24 @@ are kept in the `~/work` directory of the container and will appear there.
 
 ### Nginx, Flask, MySQL App
 
+An example of working with pre-written Docker Compose file from the official 
+Docker GitHub page. Simply `git clone` the repo, copy the app that is needed
+(in this case, the `nginx-flask-mysql` folder) and delete the rest. Then run
+`docker-compose up -d` to build the images and run the application container.
+(Had to remove the `depends_on` key because it was giving an error).
 
+Confirm that the three containers are running by typing in `docker ps`. Check
+out the Flask website on `localhost:80`. Finally, tear down the containers 
+by typing in `docker-compose down`.
+
+## Docker Swarm
+
+Docker Swarm is used to orchestrate several containers across several machines.
+Think about managing several Docker containers deployed in several laptops/VMs.
+Docker Swarm uses a `docker-stack.yml` file and it is not only for orchestration,
+but also used for high availability (failed containers get replaced) and scalability.
+
+### Voting App with Docker Swarm
 
 
 
