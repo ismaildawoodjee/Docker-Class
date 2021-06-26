@@ -157,11 +157,11 @@ will produce the required `ipv4:port/?token=some_token` (in my case, it is
 If for some reason, I lost this address, I can find it back by running the 
 container shell 
 
-        `docker exec -it compose-notebook bash`
+    docker exec -it compose-notebook bash
         
 and type in 
 
-        jupyter notebook list
+    jupyter notebook list
 
 to recover the lost address. Jupyter notebooks in this container environment
 are kept in the `~/work` directory of the container and will appear there.
@@ -187,6 +187,30 @@ but also used for high availability (failed containers get replaced) and scalabi
 
 ### Voting App with Docker Swarm
 
+First check if Docker Swarm is active by typing in
 
+    docker info
 
+or more precisely,
+
+    docker info | grep -i "swarm"
+
+and finding that `Swarm: inactive` Swarm is inactive. Activate this using the 
+command
+
+    docker swarm init
+
+to initialize the Docker Swarm. Git clone the Example-Voting-App repo and run
+within the directory
+
+    docker stack deploy --compose-file docker-stack.yml vote
+
+To see the bunch of running containers, type in
+
+    docker stack services vote
+
+The websites will be up on `localhost:5000` and `localhost:5001`. Tear down the
+containers using 
+
+    docker stack rm vote
 
