@@ -1,5 +1,18 @@
 # Learning Docker
 
+## Contents
+
+1. [Introduction](#intro)
+2. [Common Docker Commands](#cdc)
+3. [Nginx](#nginx)
+4. [Scrapy Spider](#scrapy)
+5. [Docker Compose](#dcomp)
+	- [Jupyter Notebook Environment](#jupy)
+	- [Nginx, Flask, MySQL App](#nfm)
+6. [Docker Swarm](#dswarm)
+	- [Voting App](#vote)
+
+<a name="intro"></a>
 ## Introduction
 
 Containers are a convenient way of packaging all the applications that you need
@@ -28,6 +41,7 @@ and most containers use the lightweight Alpine flavour of Linux because of its
 size. Compared to virtual machines, which has sizes on the order of several 
 gigabytes, container sizes are only on the order of megabytes.
 
+<a name="cdc"></a>
 ## Common Docker Commands
 
 Docker commands cheat sheets: from [Docker Labs](https://dockerlabs.collabnix.com/docker/cheatsheet/) and [PhoenixNap](https://phoenixnap.com/kb/list-of-docker-commands-cheat-sheet)
@@ -123,6 +137,7 @@ container in the process)
 
         docker run -v /absolute/path/to/local/directory:/app/data [IMAGE_NAME]
 
+<a name="nginx"></a>
 ## Nginx (Automating Builds)
 
 Nginx, among its many uses, can be used as a server for hosting web content. 
@@ -131,6 +146,7 @@ a simple HTML file (`index.html`). By connecting the DockerHub repo with the
 GitHub repo, any changes made to the HTML file will result in an automated 
 build after pushing changes to the GitHub repo, i.e. after running `git push`.
 
+<a name="scrapy"></a>
 ## Scrapy Spider (Mounting Volumes / Copying Files)
 
 The Scrapy spider crawls the two websites specified in the `dockerspider.py`
@@ -138,6 +154,7 @@ file and outputs their HTML pages. These pages can be transferred to the local
 file by mounting a volume to the container, or more easily by using the
 `docker cp` command to copy files.
 
+<a name="dcomp"></a>
 ## Docker Compose
 
 "Docker Compose is a tool for defining and running multi-container Docker
@@ -149,6 +166,7 @@ install all the individual components on your own system.
 
 After you finish working, tear down the containers using `docker-compose down`.
 
+<a name="jupy"></a>
 ### Jupyter Notebook Container Environment
 
 Running the `docker-compose.yml` file for building the Jupyter Notebook image
@@ -166,6 +184,7 @@ and type in
 to recover the lost address. Jupyter notebooks in this container environment
 are kept in the `~/work` directory of the container and will appear there.
 
+<a name="nfm"></a>
 ### Nginx, Flask, MySQL App
 
 An example of working with pre-written Docker Compose file from the official 
@@ -178,6 +197,7 @@ Confirm that the three containers are running by typing in `docker ps`. Check
 out the Flask website on `localhost:80`. Finally, tear down the containers 
 by typing in `docker-compose down`.
 
+<a name="dswarm"></a>
 ## Docker Swarm
 
 Docker Swarm is used to orchestrate several containers across several machines.
@@ -185,6 +205,7 @@ Think about managing several Docker containers deployed in several laptops/VMs.
 Docker Swarm uses a `docker-stack.yml` file and it is not only for orchestration,
 but also used for high availability (failed containers get replaced) and scalability.
 
+<a name="vote"></a>
 ### Voting App with Docker Swarm
 
 First check if Docker Swarm is active by typing in
